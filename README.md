@@ -73,3 +73,10 @@
   - JPA는 where, having 절에서만 서브 쿼리 사용 가능
   - from 절의 서브 쿼리는 현재 JPQL에서 불가능
     - 조인으로 풀 수 있으면 풀어서 해결
+
+#### JPQL 타입 표현
+- 문자: '헬로'
+- 숫자: 10L(Long), 10D(Double), 10F(Float)
+- Boolean: TRUE, FALSE
+- ENUM: enum 클래스의 패키지명까지 모두 적어줘야 함
+- 엔티 타입: TYPE(m) = Member (상속 관계에서 사용)
