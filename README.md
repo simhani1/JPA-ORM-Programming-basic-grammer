@@ -80,3 +80,16 @@
 - Boolean: TRUE, FALSE
 - ENUM: enum 클래스의 패키지명까지 모두 적어줘야 함
 - 엔티 타입: TYPE(m) = Member (상속 관계에서 사용)
+
+#### JPQL 기본 함수
+- CONCAT
+- SUBSTRING
+- TRIM
+- LOWER, UPPER
+- LENGTH
+- LOCATE
+- ABS, SQRT, MOD
+- SIZE, INDEX(JPA 용도)
+
+- 사용자 정의 함수 호출
+  - 하이버네이트는 사용 전 방언에 추가해야 한다.
