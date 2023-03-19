@@ -4,7 +4,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.util.List;
 
 public class JpaMain {
 
@@ -16,21 +15,34 @@ public class JpaMain {
         tx.begin();
         try {
 
-            Team team = new Team();
-            team.setName("teamA");
-            em.persist(team);
+            Team teamA = new Team();
+            teamA.setName("teamA");
+            em.persist(teamA);
 
-            Member member = new Member();
-            member.setUsername("member1");
-            member.setAge(10);
-            member.changeTeam(team);
+            Team teamB = new Team();
+            teamB.setName("teamB");
+            em.persist(teamB);
 
-            em.persist(member);
+            Member memberA = new Member();
+            memberA.setUsername("memberA");
+            memberA.setTeam(teamA);
+
+            Member memberB = new Member();
+            memberB.setUsername("memberB");
+            memberB.setTeam(teamA);
+
+            Member memberC = new Member();
+            memberC.setUsername("memberC");
+            memberC.setTeam(teamB);
+
             em.flush();
             em.clear();
 
-            List<Member> resultList = em.createQuery("select m from Member m left join m.team t on t.name = 'teamA'", Member.class)
-                    .getResultList();
+            String query = "select m from Member m where m = :member";
+            Member member = em.createQuery(query, Member.class)
+                    .setParameter("member", memberA)
+                    .getSingleResult();
+            System.out.println("member = " + member);
 
             tx.commit();
         } catch (Exception e) {
